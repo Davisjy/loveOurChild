@@ -22,6 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSUserDefaults *defatult = [NSUserDefaults standardUserDefaults];
+    NSString *name = [defatult objectForKey:@"name"];
+    self.username.text = name;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,6 +34,9 @@
 - (IBAction)login:(UIButton *)sender {
     NSString *username = self.username.text;
     NSString *pwd = self.password.text;
+    NSUserDefaults *defults = [NSUserDefaults standardUserDefaults];
+    [defults setObject:username forKey:@"name"];
+    [defults synchronize];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[@"username"] = username;
@@ -39,6 +45,7 @@
     parameters[@"a"] = @"login";
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     [manager GET:KUrl parameters:parameters success:^ void(AFHTTPRequestOperation * operation, id responseObj) {
         NSLog(@"%@",responseObj);
         int code = [responseObj[@"code"] intValue];
@@ -54,6 +61,11 @@
         if (code == 1) {
             Account *accout = [Account sharedAccount];
             [accout saveUserInfo:data[kUserID]];
+            if ([[Account sharedAccount]isLogin]) {
+                UIViewController *mainVC = [self.storyboard instantiateViewControllerWithIdentifier:@"main"];
+                [self presentViewController:mainVC animated:YES completion:nil];
+            }
+            
         }
         
     } failure:^ void(AFHTTPRequestOperation * operation, NSError * error) {

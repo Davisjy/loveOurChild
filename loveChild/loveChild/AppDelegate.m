@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <iflyMSC/IFlySpeechUtility.h>
 
 @interface AppDelegate ()
 
@@ -19,10 +20,20 @@
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *mainVC = [sb instantiateViewControllerWithIdentifier:@"main"];
+    
+    
     self.window.rootViewController = mainVC;
     [self.window makeKeyAndVisible];
     
+    NSString *initStr = [NSString stringWithFormat:@"appid=%@",@"5565df39"];
+    [IFlySpeechUtility createUtility:initStr];
+    
     return YES;
+}
+
+- (void)instanceRootViewController
+{
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

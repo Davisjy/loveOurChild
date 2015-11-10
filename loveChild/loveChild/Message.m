@@ -17,6 +17,8 @@
         self.title = dict[@"title"];
         self.des = dict[@"description"];
         self.images = dict[@"images"];
+        self.middleImageStr = [self.images[0] stringByAppendingString:@"_middle.jpg"];
+        self.bigImageStr = [self.images[0] stringByAppendingString:@"_large.jpg"];
     }
     return self;
 }

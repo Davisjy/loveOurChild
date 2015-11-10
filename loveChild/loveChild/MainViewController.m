@@ -7,6 +7,8 @@
 //
 
 #import "MainViewController.h"
+#import "Account.h"
+
 
 @interface MainViewController ()
 
@@ -16,7 +18,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    if ([[Account sharedAccount] isLogin]) {
+        UIViewController *saveVC = [self.storyboard instantiateViewControllerWithIdentifier:@"third"];
+        [self addChildViewController:saveVC];
+    }else{
+        UIViewController *firstVC = [self.storyboard instantiateViewControllerWithIdentifier:@"first"];
+        UIViewController *secondVC = [self.storyboard instantiateViewControllerWithIdentifier:@"second"];
+        self.viewControllers = @[firstVC,secondVC];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

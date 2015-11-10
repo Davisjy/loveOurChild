@@ -27,7 +27,7 @@
     _message = message;
     self.title.text = message.title;
     self.text.text = message.des;
-    NSURL *url = [NSURL URLWithString:message.images[0]];
+    NSURL *url = [NSURL URLWithString:message.middleImageStr];
     [self.icon sd_setImageWithURL:url];
 }
 

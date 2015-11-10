@@ -29,10 +29,10 @@ static Account *account;
     return account;
 }
 
-- (void)saveUserInfo:(NSDictionary *)dict
+- (void)saveUserInfo:(NSString *)string
 {
-    self.userid = dict[kUserID];
-    [NSKeyedArchiver archiveRootObject:self.userid toFile:[Account filePathForDocumentName:KFileName]];
+    self.userid = string;
+    [NSKeyedArchiver archiveRootObject:account toFile:[Account filePathForDocumentName:KFileName]];
 }
 
 - (BOOL)isLogin

@@ -12,7 +12,7 @@
 
 + (instancetype)sharedAccount;
 
-- (void)saveUserInfo:(NSDictionary *)dict;
+- (void)saveUserInfo:(NSString *)string;
 
 - (BOOL)isLogin;
 

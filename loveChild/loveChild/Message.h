@@ -14,6 +14,8 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *des;
 @property (nonatomic, strong) NSArray *images;
+@property (nonatomic, strong) NSString *middleImageStr;
+@property (nonatomic, strong) NSString *bigImageStr;
 
 
 - (instancetype)initMessageWithDictionary:(NSDictionary *)dict;
