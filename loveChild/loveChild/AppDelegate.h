@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-
+//引导视图结束
+- (void)endGuide;
 @end
 

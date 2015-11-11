@@ -7,8 +7,11 @@
 //
 
 #import "GuideViewController.h"
+#import "AppDelegate.h"
 
 @interface GuideViewController ()
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 
 @end
 
@@ -16,12 +19,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.pagingEnabled = YES;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.scrollView.contentSize = self.contentView.frame.size;
+}
+
+- (IBAction)endGuide:(UIButton *)sender {
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    [delegate endGuide];
 }
 
 /*

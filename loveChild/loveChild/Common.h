@@ -18,4 +18,6 @@
 
 #define KFileName    @"user"
 
+#define KApp_Version @"appVersion"
+
 #endif
